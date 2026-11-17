@@ -20,6 +20,7 @@ class ServerKeepAliveService : Service() {
         const val CHANNEL_ID = "av_tools_keepalive"
         const val NOTIFICATION_ID = 1001
         const val ACTION_STOP = "com.scriptrunner.app.STOP_SERVICE"
+        const val ACTION_REPOST = "com.scriptrunner.app.REPOST_NOTIFICATION"
 
         fun start(context: Context) {
             val intent = Intent(context, ServerKeepAliveService::class.java)
@@ -81,6 +82,16 @@ class ServerKeepAliveService : Service() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
+        // Android 14+ lets users swipe away foreground-service notifications; when that
+        // happens this intent fires and the service simply posts the notification again.
+        val repostIntent = Intent(this, ServerKeepAliveService::class.java).apply {
+            action = ACTION_REPOST
+        }
+        val repostPending = PendingIntent.getService(
+            this, 2, repostIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
         val builder = Notification.Builder(this, CHANNEL_ID)
 
         val stopAction = Notification.Action.Builder(
@@ -89,6 +100,10 @@ class ServerKeepAliveService : Service() {
             stopPending
         ).build()
 
+        if (android.os.Build.VERSION.SDK_INT >= 31) {
+            builder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
+        }
+
         return builder
             .setContentTitle(getString(R.string.app_name))
             .setContentText(text)
@@ -96,6 +111,7 @@ class ServerKeepAliveService : Service() {
             .setContentIntent(openPending)
             .addAction(stopAction)
             .setOngoing(true)
+            .setDeleteIntent(repostPending)
             .setOnlyAlertOnce(true)
             .setCategory(Notification.CATEGORY_SERVICE)
             .build()
