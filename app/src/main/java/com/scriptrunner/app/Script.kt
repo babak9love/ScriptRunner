@@ -21,7 +21,7 @@ data class Script(
     /** receives links shared from other apps; e.g. "/?url={url}" */
     val shareUrl: String? = null,
     /** keep a foreground service running while this script is selected */
-    val keepalive: Boolean = false,
+    val keepalive: Boolean = true,
     /** "#RRGGBB" status-bar colour; null / "auto" = take it from the page's background */
     val statusBar: String? = null,
     /** "#RRGGBB" navigation-bar colour; null / "auto" = take it from the page's background */
@@ -74,7 +74,7 @@ data class Script(
                 o.optBoolean("notify", false),
                 o.optBoolean("unfinished", false),
                 o.optString("share_url").trim().ifEmpty { null },
-                o.optBoolean("keepalive", false),
+                o.optBoolean("keepalive", true),
                 o.optString("status_bar").trim().ifEmpty { null },
                 o.optString("nav_bar").trim().ifEmpty { null },
                 o.optString("background").trim().ifEmpty { null }

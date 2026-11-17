@@ -45,7 +45,7 @@ object TermuxHelper {
 #   notify      true = download notifications (/api/jobs)     (optional)
 #   unfinished  true = offer to resume interrupted downloads  (optional)
 #   share_url   receives shared links, e.g. /?url={url}       (optional)
-#   keepalive   true = notification with a Stop button        (optional)
+#   keepalive   notification with a Stop button, default true; false = off (optional)
 #   status_bar / nav_bar / background = #RRGGBB               (optional, default: auto from page)
 
 {

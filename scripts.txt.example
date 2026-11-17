@@ -21,7 +21,6 @@
   notify = true
   unfinished = true
   share_url = /?url={url}
-  keepalive = true
 },
 
 {
