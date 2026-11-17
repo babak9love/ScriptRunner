@@ -1,0 +1,32 @@
+# Script Runner - list of scripts
+# One { } block per script. Each line is "key = value". Lines starting with # are comments.
+#
+#   name        display name
+#   path        script path (~ = Termux home)
+#   port        port of the script's web server
+#   args        extra arguments, separated by spaces          (optional)
+#   health      URL path that answers 200 when up, default /  (optional)
+#   notify      true = download notifications (/api/jobs)     (optional)
+#   unfinished  true = offer to resume interrupted downloads  (optional)
+#   share_url   receives shared links, e.g. /?url={url}       (optional)
+#   keepalive   true = notification with a Stop button        (optional)
+#   status_bar / nav_bar / background = #RRGGBB               (optional, default: auto from page)
+
+{
+  name = Social Downloader
+  path = ~/social_downloader/social_downloader_web.py
+  port = 5000
+  args = --no-browser --idle-exit 120
+  health = /api/status
+  notify = true
+  unfinished = true
+  share_url = /?url={url}
+},
+
+{
+  name = Audio Video Tools
+  path = ~/AUDIO_VIDEO_TOOLS/app.py
+  port = 5000
+  args = --no-browser
+  keepalive = true
+}

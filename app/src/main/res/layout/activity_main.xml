@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0A0E14">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#0A0E14">
+
+        <!-- spacer: pushes the icons to the end -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btnTopRefresh"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_refresh"
+            android:tint="#E8EDF2"
+            android:contentDescription="@string/refresh"
+            android:background="?android:attr/selectableItemBackgroundBorderless" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/ic_settings"
+            android:tint="#E8EDF2"
+            android:contentDescription="@string/settings"
+            android:background="?android:attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#E60A0E14"
+        android:padding="28dp"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="#2DD4BF" />
+
+        <TextView
+            android:id="@+id/tvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/hint"
+            android:textColor="#E8EDF2"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnStartServer"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="@string/start_server"
+                android:textSize="14sp"
+                android:textColor="#0A0E14"
+                android:backgroundTint="#2DD4BF"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginEnd="12dp"
+                android:minWidth="0dp" />
+
+            <Button
+                android:id="@+id/btnRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="@string/refresh"
+                android:textSize="14sp"
+                android:textColor="#E8EDF2"
+                android:backgroundTint="#171F28"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:minWidth="0dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnOpenTermux"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/open_termux"
+            android:textColor="#7C8A99"
+            style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
+
+    </FrameLayout>
+</LinearLayout>
