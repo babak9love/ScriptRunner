@@ -64,7 +64,6 @@ object TermuxHelper {
   path = ~/AUDIO_VIDEO_TOOLS/app.py
   port = 5000
   args = --no-browser
-  keepalive = true
 }"""
 
     // ---------- list result callback (filled by ScriptListReceiver) ----------
